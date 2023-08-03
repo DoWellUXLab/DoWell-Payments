@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "./index.css"
+import "../home/index.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Index = () => {
+const Verify = () => {
 
     const [responseMessage, setResponseMessage] = useState('');
 
@@ -13,11 +13,8 @@ const Index = () => {
         const apiUrl = `https://100088.pythonanywhere.com/api/stripe/initialize/public/${apiKey}`;
 
         const requestBody = {
-            stripe_key: 'sk_test_51LiKUnEJkGNthfbzNbTn7Up7EnVwyeqRWLcRX1UWyq7ABL7wn1VMmHsS4Aox3U9b2nh3HkHd32vsQRR7nItC8ybv00WChhFen4',
-            price: 500,
-            product: 'product name',
-            currency_code: 'usd',
-            callback_url: 'https://www.google.com',
+            "stripe_key": "sk_test_51LiKUnEJkGNthfbzNbTn7Up7EnVwyeqRWLcRX1UWyq7ABL7wn1VMmHsS4Aox3U9b2nh3HkHd32vsQRR7nItC8ybv00WChhFen4",
+            "id": "b2edddc6-ac13-4d95-893c-84b9c97d7519"
         };
 
         try {
@@ -29,11 +26,13 @@ const Index = () => {
         } catch (error) {
             console.error('Error:', error);
             toast('Error occurred during payment initialization '+ error?.message ,{
-                position: "top-left",
+                position: "top-right",
               })
             // setResponseMessage('Error occurred during payment initialization');
         }
     };
+
+    // https://100088.pythonanywhere.com/api/stripe/initialize/public/e801cc0f-6aaf-4e35-a1c6-f8b3e1933c32
 
 
     return (
@@ -41,8 +40,7 @@ const Index = () => {
             <style>{`@import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);`}</style>
             {/* {responseMessage} */}
             <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
-            <ToastContainer  className="toast-position" position="top-center" />
-
+                {/* <ToastContainer  className="toast-position"  position="top-right" /> */}
                 <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style={{ maxWidth: 600 }}>
                     <div className="w-full pt-1 pb-5">
                         <div className="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
@@ -50,22 +48,14 @@ const Index = () => {
                         </div>
                     </div>
                     <div className="mb-10">
-                        <h1 className="text-center font-bold text-xl uppercase">Initialize Payment</h1>
+                        <h1 className="text-center font-bold text-xl uppercase">verify Payment </h1>
                     </div>
 
                     <div className='mb-4'>
-                        <label for="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray">Product name</label>
-                        <input type="text" id="disabled-input" defaultValue={'product name'} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" disabled />
+                        <label for="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray">Payment Id</label>
+                        <input type="text" id="disabled-input" defaultValue={'b2edddc6-ac13-4d95-893c-84b9c97d7519'} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" disabled />
                     </div>
 
-                    <div className='mb-4'>
-                        <label for="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray">Price</label>
-                        <input type="text" id="disabled-input"  defaultValue={500} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" disabled />
-                    </div>
-                    <div className='mb-4'>
-                        <label for="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray">currency_code</label>
-                        <input type="text" id="first_name" defaultValue={'usd'} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" disabled />
-                    </div>
                     <div className="mb-3 flex -mx-2">
                         <div className="px-2">
                             <label htmlFor="type1" className="flex items-center cursor-pointer">
@@ -85,9 +75,8 @@ const Index = () => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }
 
-export default Index;
+export default Verify;
